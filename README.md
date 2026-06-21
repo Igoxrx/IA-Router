@@ -1,58 +1,100 @@
-AI Router — Orquestrador Dinâmico de Prompts
-O AI Router é um orquestrador inteligente que analisa a complexidade de problemas ou tarefas e define o fluxo ideal de execução, distribuindo as demandas de forma automática e integrada entre múltiplos modelos ou agentes de IA.
+# AI Router — Orquestrador Dinâmico de Prompts
 
-A aplicação foi projetada para rodar localmente no Windows de forma transparente, incluindo uma interface gráfica interativa baseada em Streamlit e um gerenciador que mantém o sistema ativo diretamente na bandeja do sistema (System Tray).
+O **AI Router** é um orquestrador inteligente projetado para analisar a complexidade de problemas ou tarefas e definir o fluxo ideal de execução. O sistema classifica as demandas (Simples vs. Complexas) e distribui os fluxos de forma automática entre múltiplos modelos ou agentes de IA.
 
-🚀 Funcionalidades
-Roteamento Inteligente: Classifica a complexidade da tarefa (Simples vs. Complexa) e desenha uma estratégia detalhada com pipelines de múltiplos passos.
+A aplicação foi desenvolvida para rodar localmente no Windows de forma transparente, contando com uma interface gráfica baseada em **Streamlit** e um gerenciador de execução que mantém o sistema ativo diretamente na bandeja do sistema (*System Tray*).
 
-Interface Interativa: Interface web construída em Streamlit para inserção de prompts, visualização de estratégias de IA e inspeção dos prompts gerados para cada etapa.
+---
 
-Execução em Segundo Plano: Inicialização silenciosa (headless) com controle total através de um ícone dedicado na barra de tarefas do Windows.
+## 🚀 Funcionalidades Principais
 
-Instalação Automatizada: Script de configuração universal que detecta o interpretador Python local e cria atalhos prontos para o usuário final.
+* **Roteamento Inteligente:** Identifica o tipo de tarefa e desenha estratégias detalhadas com pipelines de múltiplos passos.
+* **Interface Interativa (Streamlit):** Área de texto para inserção de problemas, visualização da reflexão estratégica e inspeção dos prompts gerados para cada etapa.
+* **Execução em Segundo Plano:** Inicialização silenciosa (*headless*) com controle total (abrir interface ou encerrar processos) através de um ícone na barra de tarefas.
+* **Instalação Automatizada:** Script utilitário que detecta o interpretador Python no `AppData` local e gera atalhos de inicialização rápida na Área de Trabalho.
 
-📂 Estrutura do Projeto
-Plaintext
+---
+
+## 📂 Estrutura do Repositório
+
+```text
 ├── core/
-│   └── llm_service.py       # Integração com os modelos de linguagem e lógica de análise
+│   └── llm_service.py       # Integração com os modelos e lógica de análise estratégica
 ├── app.py                   # Interface de usuário principal (Streamlit UI)
-├── rodar_background.py      # Gerenciador de segundo plano (Pystray/System Tray)
+├── rodar_background.py      # Gerenciador de segundo plano (Pystray / System Tray)
 ├── instalador.py            # Script universal de instalação e criação de atalhos
-├── .env                     # Arquivo de configuração de variáveis de ambiente
-└── app_background.log      # Log gerado automaticamente na execução em segundo plano
-🛠️ Requisitos de Sistema
-Sistema Operacional: Windows
+├── .env.example             # Template para configuração das variáveis de ambiente
+└── app_background.log      # Log gerado dinamicamente para o serviço em segundo plano
 
-Linguagem: Python 3.11 ou superior
+```
 
-Dependências Principais: streamlit, pystray, pillow, python-dotenv, winshell, pywin32
+---
 
-🔧 Configuração e Instalação
-1. Configurar Variáveis de Ambiente
-Crie um arquivo chamado .env na raiz do projeto e insira a sua chave de API do provedor utilizado (como a Groq):
+## 🛠️ Pré-requisitos e Instalação
 
-Snippet de código
+### 1. Requisitos de Sistema
+
+* **Sistema Operacional:** Windows
+* **Linguagem:** Python 3.11 ou superior
+
+### 2. Instalação das Dependências
+
+Abra o terminal na pasta do projeto e instale os pacotes necessários via `pip`:
+
+```bash
+pip install streamlit python-dotenv pillow pystray winshell pywin32
+
+```
+
+### 3. Configuração das Variáveis de Ambiente
+
+Crie um arquivo chamado `.env` na raiz do projeto (utilize o `.env.example` como referência) e adicione sua chave de API:
+
+```env
 GROQ_API_KEY=sua_chave_api_aqui
-2. Instalar Dependências
-Certifique-se de que o Python está instalado e configurado no seu ambiente. Em seguida, instale os pacotes necessários:
 
-Bash
-pip install streamlit pystray pillow python-dotenv winshell pywin32
-3. Criar Atalho na Área de Trabalho
-Execute o script de instalação para detectar automaticamente o ambiente e gerar o atalho de inicialização rápida na Área de Trabalho:
+```
 
-Bash
+### 4. Geração do Atalho
+
+Para gerar o atalho de inicialização automática na sua Área de Trabalho, execute:
+
+```bash
 python instalador.py
-🕹️ Como Utilizar
-Após a instalação, você pode iniciar o ecossistema diretamente pelo atalho criado "AI Router" na Área de Trabalho.
 
-Inicialização: O servidor Streamlit iniciará em modo oculto e uma guia será aberta automaticamente no seu navegador padrão no endereço http://127.0.0.1:8501.
+```
 
-Uso da Interface: Insira o problema que deseja resolver na área de texto e clique em "Desenhar Fluxo e Distribuir". O sistema irá expor a reflexão estratégica do modelo e os cards específicos de cada passo gerado.
+---
 
-Controle via Bandeja (System Tray): Um ícone verde será adicionado perto do relógio do Windows.
+## 🕹️ Como Usar
 
-Clique duplo ou "Abrir Interface": Restaura a aba da interface no navegador.
+### Modo Padrão (Bandeja do Sistema)
 
-"Desligar AI Router": Finaliza de forma segura todos os subprocessos ocultos do Streamlit e encerra o sistema.
+Dê um duplo clique no atalho **AI Router** criado na sua Área de Trabalho ou execute diretamente pelo terminal:
+
+```bash
+python rodar_background.py
+
+```
+
+* O servidor iniciará em modo oculto e abrirá automaticamente o seu navegador padrão em `http://127.0.0.1:8501`.
+* Um ícone surgirá na bandeja do sistema (perto do relógio). Clique com o botão direito para acessar as opções **"Abrir Interface"** ou **"Desligar AI Router"** (que encerra todos os subprocessos com segurança).
+
+### Modo Desenvolvimento
+
+Caso queira rodar apenas a interface do Streamlit diretamente no terminal para depuração:
+
+```bash
+streamlit run app.py
+
+```
+
+---
+
+## 🔍 Resolução de Problemas (Troubleshooting)
+
+* **Erro de Chave Não Encontrada:** Certifique-se de que o arquivo `.env` foi criado corretamente na raiz e que o nome da variável é estritamente `GROQ_API_KEY`.
+* **Python Não Detectado no AppData:** O `instalador.py` varre o caminho padrão local do Windows. Se o seu Python foi instalado globalmente, crie o atalho apontando manualmente para o seu executável `pythonw.exe`.
+* **Navegador não abriu:** O script aguarda 4 segundos para o servidor Streamlit subir. Caso sua máquina demore um pouco mais, basta abrir o navegador e acessar manualmente `http://127.0.0.1:8501`.
+
+```
