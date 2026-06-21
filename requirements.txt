@@ -1,0 +1,13 @@
+# Dependências Principais
+streamlit>=1.32.0
+litellm>=1.34.0
+python-dotenv>=1.0.1
+
+# Dependências do Background (Bandeja do Sistema)
+pystray>=0.19.5
+Pillow>=10.2.0
+
+# Ferramentas de Desenvolvimento e Testes
+pytest>=8.0.0
+black>=24.2.0
+flake8>=7.0.0
