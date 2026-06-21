@@ -1,0 +1,18 @@
+# Configurações locais e chaves privadas (CRÍTICO)
+.env
+
+# Logs do sistema em segundo plano
+*.log
+app_background.log
+
+# Ambientes virtuais e Python interno
+python_interno/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Arquivos do Streamlit e temporários do sistema
+.streamlit/
+.DS_Store
+Thumbs.db
